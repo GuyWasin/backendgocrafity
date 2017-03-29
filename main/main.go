@@ -12,7 +12,7 @@ import (
 )
 
 type Message struct{
-  Name  string `json:"name",bson:"name,binding:"required"`
+  Name  string `json:"name",bson:"name",binding:"required"`
   Email string `json:"email",bson:"email",binding:"required"`
   Website string `json:"website",bson:"website",binding:"required"`
   Text  string `json:"text",bson:"text",binding:"required"`
@@ -66,6 +66,7 @@ func GetMessage(w http.ResponseWriter,r *http.Request) {
   defer session.Close()
   log.Println(m)
   fmt.Fprint(w,m)
+  w.Write(m)
 }
 
 func main() {
